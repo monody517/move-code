@@ -1,19 +1,14 @@
-let html = document.querySelector('#demo')
+let html = document.querySelector('#html')
 let style = document.querySelector('#style')
 let div1 = document.querySelector('#div1')
-let string = `
-/* 你好，我是一名前端新人
+let string = `/* 你好，我是一名前端新人
 接下来我要加样式了
 这是我加的样式：*/
-body{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+
 #div1{
     border:1px solid red;
-    width:400px;
-    height:400px;
+    width:200px;
+    height:200px;
 }
 /*
 接下来变成八卦
@@ -31,15 +26,30 @@ body{
     background: rgb(255,255,255);
 background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%);
 }
+/*
+加两个小球
+*/
 #div1::before{
-    content:'1';
-    display:block;
-    border:1px solid red;
+    width:100px;
+    height:100px;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:#000;
+    background: rgb(255,255,255);
+background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 25%, rgba(0,0,0,1) 25%);
 }
 #div1::after{
-    content:'2';
-    display:block;
-    border:1px solid red;
+    width:100px;
+    height:100px;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:#fff;
+    background: rgb(0,0,0);
+background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 25%);
 }
 `
 let string2 = ''
@@ -56,10 +66,12 @@ let step = () => {
         }
         html.innerHTML = string2
         style.innerHTML = string.substring(0,n)
+        window.scrollTo(0,9999)
+        html.scrollTo(0,9999)
         if(n < string.length -1){
             n += 1
             step()
         }
-    },10)
+    },50)
 }
 step()
